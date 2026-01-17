@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Morenita ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="stars-container">
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+        <div class="stars-layer-3"></div>
+    </div>
+
+    <section id="login-screen" class="screen">
+        <div class="login-box">
+            <h2>Bienvenida, mi vida ❤️</h2>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Escribe la clave...">
+                <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
+            <button id="loginBtn">Entrar</button>
+            <p id="error-msg" class="hidden">¡Incorrecto! 😢</p>
+        </div>
+    </section>
+
+<section id="intro-screen" class="screen hidden">
+        <div class="typing-container">
+            <p class="fade-text">Te extraño mucho... ❤️</p>
+            <p class="fade-text delay-1">Eres mi todo ❤️</p>
+            <p class="fade-text delay-2">Te amo con toda mi alma 🌍</p>
+            <p class="fade-text delay-3">Eres lo más bonito que tengo ✨</p>
+        </div>
+    </section>   
+    
+    <section id="menu-screen" class="screen hidden">
+        <h2>Elige una sorpresa 🥰</h2>
+        <div class="buttons-container">
+            <button class="menu-btn" onclick="showSection('letter-section')">💌 Carta</button>
+            <button class="menu-btn" onclick="showSection('photos-section')">📸 Fotos</button>
+            <button class="menu-btn" onclick="showSection('reasons-section')">🌹 Razones</button>
+        </div>
+    </section>
+
+   <section id="letter-section" class="screen hidden">
+    <button class="back-btn" onclick="goBack()">⬅ Volver</button>
+    
+    <div class="scene-3d">
+        <div id="mailbox" class="mailbox-3d" onclick="entregarSobre()">
+            <div class="mailbox-face front">
+                <div class="door-3d"></div>
+            </div>
+            <div class="mailbox-face back"></div>
+            <div class="mailbox-face top"></div>
+            <div class="mailbox-face left"></div>
+            <div class="mailbox-face right">
+                <div class="flag-3d"></div>
+            </div>
+            <div class="mailbox-stand"></div>
+        </div>
+
+        <div id="envelope-container" class="envelope-3d-wrapper hidden" onclick="abrirSobreCompleto(event)">
+            <div class="envelope-inner">
+                <div class="flap-3d"></div>
+                <div class="pocket-3d"></div>
+                <div class="letter-paper-3d" id="letter-paper">
+                    <div id="typewriter-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="instruction-msg" class="instruction-text">Toca el buzón para recibir tu correo ❤️</p>
+</section> 
+   <section id="photos-section" class="screen hidden">
+    <button class="back-btn" onclick="goBack()">⬅ Volver</button>
+    
+    <div class="cinema-container">
+        <div id="cinema-card" class="cinema-card" onclick="handleCinemaClick()">
+            <div class="cinema-frame">
+                <img id="cinema-img" src="" alt="Foto">
+                <div id="cinema-text-overlay" class="hidden">
+                    <p id="cinema-long-text"></p>
+                    <span class="click-hint">Toca para siguiente foto...</span>
+                </div>
+            </div>
+            <div class="cinema-counter"><span id="current-photo">1</span> / 20</div>
+        </div>
+    </div>
+</section>
+
+<section id="reasons-section" class="screen hidden">
+    <button class="back-btn" onclick="goBack()">⬅ Volver</button>
+    
+    <div class="wheel-container">
+        <div class="photo-center">
+            <img src="imagenes/image1.jpg" alt="Centro">
+        </div>
+
+        <div class="photo-wheel" id="main-wheel">
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image2.jpg"></div>
+                    <div class="back"><span>Te adoro ❤️</span></div>
+                </div>
+            </div>
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image3.jpg"></div>
+                    <div class="back"><span>Eres mía 😍</span></div>
+                </div>
+            </div>
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image4.jpg"></div>
+                    <div class="back"><span>Mi reina 👑</span></div>
+                </div>
+            </div>
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image5.jpg"></div>
+                    <div class="back"><span>Te amo 😘</span></div>
+                </div>
+            </div>
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image6.jpg"></div>
+                    <div class="back"><span>Mi vida ✨</span></div>
+                </div>
+            </div>
+            <div class="wheel-item" onclick="flipCard(this)">
+                <div class="wheel-card">
+                    <div class="front"><img src="imagenes/image7.jpg"></div>
+                    <div class="back"><span>Preciosa 🌹</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reason-text-box">
+        <h3>Razones por las que te amo</h3>
+        <p id="changing-reason">Cargando razones...</p>
+    </div>
+</section> 
+<script src="scrypt.js"></script>
+</body>
+</html>

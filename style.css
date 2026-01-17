@@ -1,0 +1,712 @@
+.shake {
+    animation: shakeAnim 0.5s;
+}
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.word-rain {
+    position: absolute;
+    top: -50px;
+    color: white;
+    font-family: 'Dancing Script';
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #050505;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FONDO DE ESTRELLAS */
+.stars-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+.stars-layer-1 {
+    width: 2px; height: 2px;
+    box-shadow: 10vw 20vh #fff, 50vw 40vh #fff, 80vw 10vh #fff, 30vw 70vh #fff, 70vw 80vh #fff, 15vw 50vh #fff;
+    animation: moveStars 100s linear infinite;
+}
+
+@keyframes moveStars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-1000px); }
+}
+
+/* PANTALLAS */
+.screen {
+    position: absolute;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+}
+
+.hidden { display: none !important; }
+
+/* LOGIN BOX */
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+input {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    margin: 1rem 0;
+    width: 250px;
+}
+
+button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CARTA Y OTROS (Simplificado para que no falle) */
+.envelope { background: #c0392b; width: 150px; height: 100px; position: relative; margin-top: 20px;}
+.back-btn { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.2); }
+.menu-btn { margin: 10px; width: 200px; padding: 15px; background: rgba(255,255,255,0.1); border: 1px solid #ff4d6d; color: white; cursor: pointer;}
+.main-reason-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ff4d6d; object-fit: cover; }
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Contenedor principal de la intro */
+.typing-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Estilo para las frases grandes en el centro */
+.fade-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem; /* Tamaño muy grande */
+    color: #fff;
+    text-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
+    position: absolute; /* Una encima de otra para el efecto */
+    text-align: center;
+    width: 90%;
+    opacity: 0;
+    pointer-events: none;
+    animation: simpleFade 4s ease-in-out forwards; /* Duración de cada frase */
+}
+
+/* Tiempos de aparición (una tras otra) */
+.delay-1 { animation-delay: 4s !important; }
+.delay-2 { animation-delay: 8s !important; }
+.delay-3 { animation-delay: 12s !important; }
+
+@keyframes simpleFade {
+    0% { opacity: 0; transform: scale(0.5); }
+    20% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.2); }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .fade-text { font-size: 2.5rem; }
+}
+
+/* Contenedor principal de la rueda */
+.wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+/* Foto del centro */
+.photo-center {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #ff4d6d;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 0 20px #ff4d6d;
+}
+
+.photo-center img { width: 100%; height: 100%; object-fit: cover; }
+
+/* La rueda que gira */
+.photo-wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateWheel 20s linear infinite; /* Velocidad del giro */
+}
+
+.wheel-item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    top: 50%;
+    margin: -30px; /* Centra el objeto antes de desplazarlo */
+}
+
+.wheel-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    /* Evita que las fotos salgan de cabeza al girar la rueda */
+    animation: counterRotate 20s linear infinite; 
+}
+
+/* Posicionamiento de las 6 fotos en el círculo (360 / 6 = 60 grados cada una) */
+.wheel-item:nth-child(1) { transform: rotate(0deg) translate(120px); }
+.wheel-item:nth-child(2) { transform: rotate(60deg) translate(120px); }
+.wheel-item:nth-child(3) { transform: rotate(120deg) translate(120px); }
+.wheel-item:nth-child(4) { transform: rotate(180deg) translate(120px); }
+.wheel-item:nth-child(5) { transform: rotate(240deg) translate(120px); }
+.wheel-item:nth-child(6) { transform: rotate(300deg) translate(120px); }
+
+/* Animaciones */
+@keyframes rotateWheel {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+.reason-text-box {
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 80%;
+}
+/* Contenedor de la Rueda */
+.wheel-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Foto del centro (Estática) */
+.photo-center {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 4px solid #ff4d6d;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+}
+.photo-center img { width: 100%; height: 100%; object-fit: cover; }
+
+/* La rueda que gira (360 grados) */
+.photo-wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateWheel 25s linear infinite;
+}
+
+/* Cada círculo de foto en la rueda */
+.wheel-item {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    left: 50%;
+    top: 50%;
+    margin-left: -32.5px; /* Mitad del ancho */
+    margin-top: -32.5px;  /* Mitad del alto */
+}
+
+.wheel-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2.5px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    /* Esta animación hace que la foto interna NO gire de cabeza */
+    animation: counterRotate 25s linear infinite;
+}
+
+/* Posiciones de las 6 fotos en el círculo */
+.wheel-item:nth-child(1) { transform: rotate(0deg) translate(130px); }
+.wheel-item:nth-child(2) { transform: rotate(60deg) translate(130px); }
+.wheel-item:nth-child(3) { transform: rotate(120deg) translate(130px); }
+.wheel-item:nth-child(4) { transform: rotate(180deg) translate(130px); }
+.wheel-item:nth-child(5) { transform: rotate(240deg) translate(130px); }
+.wheel-item:nth-child(6) { transform: rotate(300deg) translate(130px); }
+
+/* Animaciones de rotación */
+@keyframes rotateWheel {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Caja de texto decorativa */
+.reason-text-box {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    max-width: 85%;
+    text-align: center;
+}
+
+.reason-text-box h3 {
+    color: #ff4d6d;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+
+#changing-reason {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    transition: opacity 0.5s ease;
+}
+/* Agrandamos el contenedor */
+.wheel-container {
+    position: relative;
+    width: 450px; /* Más grande */
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+/* Estructura para voltear (Flip) */
+.wheel-item {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.wheel-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clase que se activa al hacer click */
+.wheel-item.flipped .wheel-card {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff4d6d;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.back {
+    background: #ff4d6d;
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+
+/* Posiciones en el círculo más grande (160px de distancia) */
+.wheel-item:nth-child(1) { transform: rotate(0deg) translate(180px) rotate(0deg); }
+.wheel-item:nth-child(2) { transform: rotate(60deg) translate(180px) rotate(-60deg); }
+.wheel-item:nth-child(3) { transform: rotate(120deg) translate(180px) rotate(-120deg); }
+.wheel-item:nth-child(4) { transform: rotate(180deg) translate(180px) rotate(-180deg); }
+.wheel-item:nth-child(5) { transform: rotate(240deg) translate(180px) rotate(-240deg); }
+.wheel-item:nth-child(6) { transform: rotate(300deg) translate(180px) rotate(-300deg); }
+
+/* Animación de la rueda (ajustada para el nuevo tamaño) */
+.photo-wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateWheel 30s linear infinite;
+}
+
+/* Detener rotación al hacer click para poder leer el mensaje */
+.photo-wheel:hover {
+    animation-play-state: paused;
+}
+.cinema-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.cinema-card {
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    cursor: pointer;
+    animation: zoomInCinema 0.8s ease-out;
+}
+
+.cinema-frame {
+    position: relative;
+    border: 10px solid white;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px rgba(255, 77, 109, 0.3);
+    overflow: hidden;
+    background: #000;
+}
+
+.cinema-frame img {
+    width: 100%;
+    display: block;
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+/* Efecto cuando sale el texto */
+.cinema-frame.blur img {
+    filter: blur(8px) brightness(0.4);
+    transform: scale(1.1);
+}
+
+#cinema-text-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: white;
+    text-align: center;
+}
+
+#cinema-long-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem; /* Un poquito más pequeño para los textos largos */
+    line-height: 1.4;
+    white-space: pre-line; /* Esto es vital para que respete los saltos de línea */
+    text-align: center;
+    max-height: 80%; /* Para que no se salga del cuadro */
+    overflow-y: auto; /* Por si el texto es demasiado largo en pantallas pequeñas */
+}
+.click-hint {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+.cinema-counter {
+    margin-top: 15px;
+    font-family: 'Poppins';
+    color: #ff4d6d;
+    font-weight: bold;
+}
+
+@keyframes zoomInCinema {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+/* Contenedor principal */
+.mailbox-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+}
+
+/* Diseño del Buzón */
+.mailbox {
+    position: relative;
+    width: 140px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 10;
+}
+
+.mailbox-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #34495e;
+    border-radius: 50px 50px 0 0;
+}
+
+.mailbox-door {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #2c3e50;
+    border-radius: 50px 50px 0 0;
+    transform-origin: bottom;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #22313f;
+}
+
+.mailbox.open .mailbox-door {
+    transform: rotateX(-110deg);
+}
+
+.mailbox-flag {
+    position: absolute;
+    right: -10px; top: 20px;
+    width: 10px; height: 40px;
+    background: #e74c3c;
+    border-radius: 5px;
+    transform-origin: bottom;
+    transition: transform 0.5s;
+}
+
+.mailbox.open .mailbox-flag {
+    transform: rotate(90deg);
+}
+
+.mailbox-stand {
+    width: 10px; height: 80px;
+    background: #7f8c8d;
+    margin: 0 auto;
+}
+
+/* Animación del Sobre saliendo */
+.envelope-wrapper {
+    position: absolute;
+    top: 20%;
+    width: 250px;
+    height: 160px;
+    z-index: 5;
+    transition: transform 0.8s ease-out, opacity 0.5s;
+}
+
+.envelope-wrapper.emerge {
+    transform: translateY(-120px) scale(1.1);
+    z-index: 20; /* Pasa al frente del buzón */
+}
+
+/* Re-usamos estilos del sobre previo pero ajustados */
+.envelope-3d {
+    position: relative;
+    width: 100%; height: 100%;
+    background: #c0392b;
+    border-radius: 0 0 10px 10px;
+    transform-style: preserve-3d;
+}
+
+.flap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-top: 80px solid #e74c3c;
+    transform-origin: top;
+    transition: transform 0.4s 0.2s;
+    z-index: 3;
+}
+
+.pocket {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 90px;
+    background: #c0392b;
+    z-index: 4;
+    border-radius: 0 0 10px 10px;
+}
+
+.letter-content {
+    position: absolute;
+    top: 5px; left: 10px;
+    width: 230px; height: 140px;
+    background: white;
+    padding: 15px;
+    z-index: 2;
+    transition: transform 0.6s 0.5s, height 0.6s 0.5s;
+    overflow-y: auto;
+    color: #333;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Apertura final */
+.envelope-wrapper.open .flap { transform: rotateX(180deg); z-index: 1; }
+.envelope-wrapper.open .letter-content {
+    transform: translateY(-130px);
+    height: 300px;
+    z-index: 25;
+}
+.scene-3d {
+    perspective: 1200px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* BUZÓN 3D */
+.mailbox-3d {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg) rotateX(10deg);
+    transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+.mailbox-face {
+    position: absolute;
+    background: #2c3e50;
+    border: 1px solid #1a252f;
+}
+
+.mailbox-face.front { width: 120px; height: 120px; transform: translateZ(60px); background: none; border: none; }
+.mailbox-face.back  { width: 120px; height: 120px; transform: translateZ(-60px); background: #34495e; }
+.mailbox-face.left  { width: 120px; height: 120px; transform: rotateY(-90deg) translateZ(60px); background: #2c3e50; }
+.mailbox-face.right { width: 120px; height: 120px; transform: rotateY(90deg) translateZ(60px); background: #2c3e50; }
+.mailbox-face.top   { 
+    width: 120px; height: 120px; 
+    transform: rotateX(90deg) translateZ(60px); 
+    background: #34495e; 
+    border-radius: 50% 50% 0 0; 
+}
+
+/* PUERTA 3D */
+.door-3d {
+    width: 100%; height: 100%;
+    background: #34495e;
+    border: 2px solid #22313f;
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mailbox-3d.open .door-3d { transform: rotateX(-110deg); }
+
+/* SOBRE 3D */
+.envelope-3d-wrapper {
+    position: absolute;
+    width: 250px;
+    height: 160px;
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    opacity: 0;
+}
+
+.envelope-3d-wrapper.emerge {
+    opacity: 1;
+    transform: translateZ(200px) translateY(-50px) rotateY(10deg);
+}
+
+.envelope-inner {
+    width: 100%; height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    background: #c0392b;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.flap-3d {
+    position: absolute;
+    top: 0; width: 0; height: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-top: 90px solid #e74c3c;
+    transform-origin: top;
+    transition: transform 0.5s;
+    z-index: 10;
+}
+
+.envelope-3d-wrapper.open .flap-3d { transform: rotateX(180deg); }
+
+.letter-paper-3d {
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 230px; height: 140px;
+    background: white;
+    padding: 20px;
+    transform: translateZ(-1px);
+    transition: transform 0.8s 0.4s;
+    color: #333;
+    font-family: 'Dancing Script', cursive;
+    overflow-y: auto;
+}
+
+.envelope-3d-wrapper.open .letter-paper-3d {
+    transform: translateY(-180px) translateZ(1px);
+    height: 350px;
+}
